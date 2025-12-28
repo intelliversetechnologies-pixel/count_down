@@ -297,6 +297,34 @@ body::before {
   overflow: hidden;
 }
 
+.panel-max-btn {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.6rem;
+  border: 1px solid rgba(28, 59, 54, 0.25);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--pine);
+  font-size: 0.7rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+  z-index: 2;
+}
+
+.panel-max-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(28, 59, 54, 0.16);
+  border-color: rgba(28, 59, 54, 0.45);
+}
+
+.panel-max-btn:focus-visible {
+  outline: 2px solid rgba(28, 59, 54, 0.35);
+  outline-offset: 2px;
+}
+
 .panel::before {
   content: "";
   position: absolute;

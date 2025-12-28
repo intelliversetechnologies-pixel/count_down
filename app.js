@@ -3,6 +3,7 @@ const statusEl = document.getElementById("status");
 const targetEl = document.getElementById("target");
 const localEl = document.getElementById("local");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
+const panelMaxBtn = document.getElementById("panel-max-btn");
 const settingsBtn = document.getElementById("settings-btn");
 const settingsPanel = document.getElementById("settings-panel");
 const settingsClose = document.getElementById("settings-close");
@@ -191,6 +192,20 @@ function setFullscreenMode(isFullscreen) {
 
 if (fullscreenBtn) {
   fullscreenBtn.addEventListener("click", async () => {
+    if (!document.fullscreenElement) {
+      try {
+        await document.documentElement.requestFullscreen();
+      } catch (error) {
+        setFullscreenMode(!document.body.classList.contains("fullscreen"));
+      }
+    } else {
+      await document.exitFullscreen();
+    }
+  });
+}
+
+if (panelMaxBtn) {
+  panelMaxBtn.addEventListener("click", async () => {
     if (!document.fullscreenElement) {
       try {
         await document.documentElement.requestFullscreen();
