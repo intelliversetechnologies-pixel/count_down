@@ -324,7 +324,15 @@ function updateCountdown() {
   applyMetaVisibility(settings.showMeta);
 
   if (document.body.classList.contains("fullscreen")) {
-    timerEl.textContent = formatClockTime(now);
+    if (remaining <= 0) {
+      timerEl.textContent = "00:00:00";
+      return;
+    }
+    if (remaining > durationMs) {
+      timerEl.textContent = formatClockTime(now);
+      return;
+    }
+    timerEl.textContent = formatTimeParts(remaining).text;
     return;
   }
 
