@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RCCG Rose of Sharon - New Year Crossover Countdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-caption">
+          <span class="caption-title">General Overseer</span>
+          <span class="caption-sub">Pastor E. A. Adeboye</span>
+        </div>
+      </aside>
+      <div class="content">
+        <section class="hero">
+          <div class="halo"></div>
+          <div class="hero-top">
+            <img class="logo" src="SRC/Rccglogo.png" alt="RCCG logo" />
+            <svg class="rose-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+              <defs>
+                <radialGradient id="roseGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f7c1c2" />
+                  <stop offset="65%" stop-color="#d0696a" />
+                  <stop offset="100%" stop-color="#b45658" />
+                </radialGradient>
+              </defs>
+              <g fill="url(#roseGradient)">
+                <circle cx="60" cy="60" r="38" />
+                <circle cx="45" cy="52" r="24" opacity="0.85" />
+                <circle cx="72" cy="50" r="20" opacity="0.85" />
+                <circle cx="54" cy="72" r="18" opacity="0.85" />
+              </g>
+              <circle cx="60" cy="60" r="10" fill="#f7e0e0" />
+            </svg>
+          </div>
+          <p class="tag">RCCG Rose of Sharon</p>
+          <h1>New Year Crossover</h1>
+          <p class="sub">One hour countdown, synced to real time</p>
+          <div class="hero-actions">
+            <button class="fullscreen-btn" id="fullscreen-btn" type="button">Maximize Clock</button>
+            <button class="settings-btn" id="settings-btn" type="button">Settings</button>
+          </div>
+        </section>
+
+        <section class="countdown">
+          <div class="panel">
+            <div class="timer" id="timer">00:00:00</div>
+            <div class="status" id="status">Preparing the final hour</div>
+          </div>
+          <div class="meta">
+            <div class="meta-item">
+              <span class="label">Target</span>
+              <span class="value" id="target"></span>
+            </div>
+            <div class="meta-item">
+              <span class="label">Lagos Time</span>
+              <span class="value" id="local"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="footer">
+          <p>Let every moment count as we cross into the new year together.</p>
+        </section>
+      </div>
+      <aside class="sidebar sidebar-right">
+        <div class="sidebar-caption">
+          <span class="caption-title">Host</span>
+          <span class="caption-sub">Rose of Sharon Parish</span>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="settings-panel" id="settings-panel" aria-hidden="true">
+    <div class="settings-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="settings-header">
+        <h2 id="settings-title">Countdown Settings</h2>
+        <button class="settings-close" id="settings-close" type="button" aria-label="Close settings">Close</button>
+      </div>
+      <div class="settings-body">
+        <label class="settings-field">
+          <span>Countdown duration (minutes)</span>
+          <input id="duration-input" type="number" min="1" max="180" step="1" />
+        </label>
+        <label class="settings-field">
+          <span>Target date</span>
+          <input id="date-input" type="date" />
+        </label>
+        <label class="settings-field">
+          <span>Target time (Lagos)</span>
+          <input id="time-input" type="time" step="1" />
+        </label>
+        <label class="settings-field checkbox">
+          <input id="show-meta-input" type="checkbox" />
+          <span>Show target and Lagos time</span>
+        </label>
+        <div class="settings-actions">
+          <button class="apply-btn" id="apply-settings" type="button">Apply</button>
+          <button class="reset-btn" id="reset-settings" type="button">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
