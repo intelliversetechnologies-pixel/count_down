@@ -4,6 +4,8 @@ const targetEl = document.getElementById("target");
 const localEl = document.getElementById("local");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
 const panelMaxBtn = document.getElementById("panel-max-btn");
+const displayBtn = document.getElementById("display-btn");
+const panelDisplayBtn = document.getElementById("panel-display-btn");
 const settingsBtn = document.getElementById("settings-btn");
 const settingsPanel = document.getElementById("settings-panel");
 const settingsClose = document.getElementById("settings-close");
@@ -183,10 +185,20 @@ function formatClockTime(date) {
   return date.toLocaleTimeString("en-NG", TIME_OPTIONS);
 }
 
+function setDisplayMode(isDisplayMode) {
+  document.body.classList.toggle("display-mode", isDisplayMode);
+  const label = isDisplayMode ? "Exit Display" : "Display Mode";
+  if (displayBtn) displayBtn.textContent = label;
+  if (panelDisplayBtn) panelDisplayBtn.textContent = label;
+}
+
 function setFullscreenMode(isFullscreen) {
   document.body.classList.toggle("fullscreen", isFullscreen);
   if (fullscreenBtn) {
     fullscreenBtn.textContent = isFullscreen ? "Exit Fullscreen" : "Maximize Clock";
+  }
+  if (panelMaxBtn) {
+    panelMaxBtn.textContent = isFullscreen ? "Exit Fullscreen" : "Maximize Countdown";
   }
 }
 
@@ -215,6 +227,18 @@ if (panelMaxBtn) {
     } else {
       await document.exitFullscreen();
     }
+  });
+}
+
+if (displayBtn) {
+  displayBtn.addEventListener("click", () => {
+    setDisplayMode(!document.body.classList.contains("display-mode"));
+  });
+}
+
+if (panelDisplayBtn) {
+  panelDisplayBtn.addEventListener("click", () => {
+    setDisplayMode(!document.body.classList.contains("display-mode"));
   });
 }
 
@@ -322,19 +346,6 @@ function updateCountdown() {
   targetEl.textContent = formatDateTime(target);
   localEl.textContent = formatDateTime(now);
   applyMetaVisibility(settings.showMeta);
-
-  if (document.body.classList.contains("fullscreen")) {
-    if (remaining <= 0) {
-      timerEl.textContent = "00:00:00";
-      return;
-    }
-    if (remaining > durationMs) {
-      timerEl.textContent = formatClockTime(now);
-      return;
-    }
-    timerEl.textContent = formatTimeParts(remaining).text;
-    return;
-  }
 
   if (remaining <= 0) {
     timerEl.textContent = "00:00:00";

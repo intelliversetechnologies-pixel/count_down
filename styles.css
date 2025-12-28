@@ -234,6 +234,26 @@ body::before {
   border-color: rgba(28, 59, 54, 0.55);
 }
 
+.display-btn {
+  width: fit-content;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(28, 59, 54, 0.18);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--pine);
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+}
+
+.display-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(28, 59, 54, 0.16);
+  border-color: rgba(28, 59, 54, 0.45);
+}
+
 .settings-btn {
   width: fit-content;
   padding: 0.75rem 1.5rem;
@@ -297,10 +317,17 @@ body::before {
   overflow: hidden;
 }
 
-.panel-max-btn {
+.panel-actions {
   position: absolute;
   top: 1.4rem;
   right: 1.6rem;
+  display: flex;
+  gap: 0.6rem;
+  z-index: 2;
+}
+
+.panel-max-btn,
+.panel-display-btn {
   border: 1px solid rgba(28, 59, 54, 0.25);
   background: rgba(255, 255, 255, 0.75);
   color: var(--pine);
@@ -311,16 +338,27 @@ body::before {
   border-radius: 999px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
-  z-index: 2;
 }
 
-.panel-max-btn:hover {
+.panel-display-btn {
+  border-color: rgba(208, 105, 106, 0.35);
+  color: var(--rose-deep);
+}
+
+.panel-max-btn:hover,
+.panel-display-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(28, 59, 54, 0.16);
   border-color: rgba(28, 59, 54, 0.45);
 }
 
-.panel-max-btn:focus-visible {
+.panel-display-btn:hover {
+  border-color: rgba(208, 105, 106, 0.55);
+}
+
+.panel-max-btn:focus-visible,
+.panel-display-btn:focus-visible,
+.display-btn:focus-visible {
   outline: 2px solid rgba(28, 59, 54, 0.35);
   outline-offset: 2px;
 }
@@ -465,6 +503,51 @@ body.fullscreen .panel {
 body.fullscreen .timer {
   font-size: clamp(10rem, 26vw, 22rem);
   letter-spacing: 0.32rem;
+  text-align: center;
+}
+
+body.display-mode .hero,
+body.display-mode .meta,
+body.display-mode .footer,
+body.display-mode .status {
+  display: none;
+}
+
+body.display-mode .layout {
+  grid-template-columns: 1fr;
+}
+
+body.display-mode .sidebar,
+body.display-mode .sidebar-right {
+  display: none;
+}
+
+body.display-mode .content {
+  width: 100%;
+}
+
+body.display-mode .countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.display-mode .panel {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  backdrop-filter: none;
+}
+
+body.display-mode .panel::after,
+body.display-mode .panel::before {
+  display: none;
+}
+
+body.display-mode .timer {
+  font-size: clamp(8rem, 22vw, 18rem);
+  letter-spacing: 0.28rem;
   text-align: center;
 }
 
