@@ -1,0 +1,189 @@
+/* --- Services Page Styles --- */
+
+.services-page {
+    display: block;
+    /* Override flex/grid from main page if needed */
+}
+
+.services-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 2rem;
+}
+
+.services-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--ink);
+    transform: translateX(-4px);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.page-title {
+    font-family: "Cinzel", serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.page-subtitle {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    perspective: 1000px;
+}
+
+.service-card {
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.1s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.service-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.service-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(251, 191, 36, 0.3);
+    /* Gold border on hover */
+}
+
+.service-card.featured {
+    border-color: rgba(225, 29, 72, 0.4);
+    /* Rose border */
+    background: linear-gradient(145deg, rgba(225, 29, 72, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.service-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sun);
+    background: rgba(251, 191, 36, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.featured .service-tag {
+    background: rgba(225, 29, 72, 0.2);
+    color: var(--rose);
+}
+
+.service-card h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+}
+
+.service-time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--pine);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.service-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.select-service-btn {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--ink);
+    padding: 0.75rem;
+    border-radius: 12px;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.service-card:hover .select-service-btn {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+}
+
+.featured .select-service-btn {
+    background: rgba(225, 29, 72, 0.2);
+    border-color: rgba(225, 29, 72, 0.4);
+    color: var(--rose);
+}
+
+.featured:hover .select-service-btn {
+    background: var(--rose-deep);
+    color: white;
+    border-color: var(--rose-deep);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
