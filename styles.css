@@ -369,6 +369,13 @@ button {
   margin: 0 auto;
 }
 
+.copyright {
+  font-size: 0.75rem !important;
+  opacity: 0.6;
+  margin-top: 0.5rem !important;
+  letter-spacing: 0.05em;
+}
+
 /* --- Fullscreen / Display Modes --- */
 body.fullscreen .layout,
 body.display-mode .layout {

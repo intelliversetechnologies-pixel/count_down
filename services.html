@@ -80,9 +80,71 @@
                         <button class="select-service-btn">Select Service</button>
                     </div>
                 </article>
+
+                <!-- Anointing Service -->
+                <article class="service-card">
+                    <div class="card-content">
+                        <span class="service-tag">Monthly</span>
+                        <h2>Anointing Service</h2>
+                        <div class="service-time">
+                            <span class="icon">🕊️</span>
+                            <span>1st Day of Month, 6:00 AM</span>
+                        </div>
+                        <p>Start the month with divine empowerment and anointing.</p>
+                        <button class="select-service-btn" id="btn-anointing">Select Service</button>
+                    </div>
+                </article>
+
+                <!-- Holy Communion -->
+                <article class="service-card">
+                    <div class="card-content">
+                        <span class="service-tag">First Sunday</span>
+                        <h2>Holy Communion</h2>
+                        <div class="service-time">
+                            <span class="icon">🍷</span>
+                            <span>1st Sunday, 5:00 PM</span>
+                        </div>
+                        <p>A solemn time of communion and fellowship.</p>
+                        <button class="select-service-btn">Select Service</button>
+                    </div>
+                </article>
             </div>
+            <footer class="services-footer">
+                <p class="copyright">Built by Intelliverse Technologies Copyright 2005</p>
+            </footer>
         </div>
     </main>
+    <!-- Modal for Anointing Service -->
+    <div id="flyer-modal" class="modal-overlay" aria-hidden="true">
+        <div class="flyer-card">
+            <button class="close-modal" id="close-modal-btn">&times;</button>
+            <div class="flyer-content">
+                <img src="SRC/anointing_bg.png" alt="Anointing Service Background" class="flyer-bg">
+                <div class="flyer-overlay">
+                    <div class="leaders">
+                        <div class="leader">
+                            <img src="SRC/adeboye 1.jpeg" alt="Pastor E.A. Adeboye">
+                            <span>Pastor E.A. Adeboye</span>
+                            <small>General Overseer</small>
+                        </div>
+                        <div class="leader">
+                            <img src="SRC/arole 1.png" alt="Rose of Sharon Parish">
+                            <span>Rose of Sharon</span>
+                            <small>Host Parish</small>
+                        </div>
+                    </div>
+                    <div class="flyer-text">
+                        <h2>Anointing Service</h2>
+                        <p class="flyer-date">1st Day of Every Month</p>
+                        <p class="flyer-time">6:00 AM</p>
+                        <p class="flyer-venue">RCCG Rose of Sharon Parish</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="services.js"></script>
 </body>
 
 </html>
