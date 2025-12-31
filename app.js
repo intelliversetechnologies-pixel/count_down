@@ -336,6 +336,10 @@ if (resetSettingsBtn) {
   });
 }
 
+const hoursEl = document.getElementById("t-hours");
+const minutesEl = document.getElementById("t-minutes");
+const secondsEl = document.getElementById("t-seconds");
+
 function updateCountdown() {
   const now = new Date();
   const settings = getSettings();
@@ -347,10 +351,42 @@ function updateCountdown() {
   localEl.textContent = formatDateTime(now);
   applyMetaVisibility(settings.showMeta);
 
+  // Helper to safely set text content if elements exist
+  const setTime = (h, m, s) => {
+    if (hoursEl) hoursEl.textContent = String(h).padStart(2, "0");
+    if (minutesEl) minutesEl.textContent = String(m).padStart(2, "0");
+    if (secondsEl) secondsEl.textContent = String(s).padStart(2, "0");
+  };
+
   if (remaining <= 0) {
-    timerEl.textContent = "00:00:00";
+    setTime(0, 0, 0);
     statusEl.textContent = "Happy New Year!";
+
+    // Trigger Celebration
+    const celebrationOverlay = document.getElementById('celebration-overlay');
+    const celebrationVideo = document.getElementById('celebration-video');
+
+    if (celebrationOverlay && !celebrationOverlay.classList.contains('active')) {
+      celebrationOverlay.classList.add('active');
+      celebrationOverlay.setAttribute('aria-hidden', 'false');
+      if (celebrationVideo) {
+        celebrationVideo.play().catch(e => console.log('Auto-play prevent:', e));
+      }
+    }
     return;
+  }
+
+  // Hide celebration if we reset (or time is back positive)
+  const celebrationOverlay = document.getElementById('celebration-overlay');
+  const celebrationVideo = document.getElementById('celebration-video');
+  if (celebrationOverlay && celebrationOverlay.classList.contains('active') && remaining > 1000) {
+    // Only hide if we aren't at 0 anymore (e.g. user reset clock)
+    celebrationOverlay.classList.remove('active');
+    celebrationOverlay.setAttribute('aria-hidden', 'true');
+    if (celebrationVideo) {
+      celebrationVideo.pause();
+      celebrationVideo.currentTime = 0;
+    }
   }
 
   if (remaining > durationMs) {
@@ -360,14 +396,34 @@ function updateCountdown() {
     const hours = Math.floor((untilStart % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
     const minutes = Math.floor((untilStart % (60 * 60 * 1000)) / (60 * 1000));
 
-    timerEl.textContent = formatTimeParts(durationMs).text;
+    // Show duration (e.g. 60:00:00) as static or countdown? 
+    // Usually we show the full duration waiting.
+    const durParts = formatTimeParts(durationMs);
+    setTime(durParts.hours, durParts.minutes, durParts.seconds);
+
     statusEl.textContent = `Countdown starts at ${startTime.toLocaleTimeString("en-NG", { hour: "2-digit", minute: "2-digit", timeZone: TIME_ZONE })}. Starts in ${days}d ${hours}h ${minutes}m.`;
     return;
   }
 
   const parts = formatTimeParts(remaining);
-  timerEl.textContent = parts.text;
+  setTime(parts.hours, parts.minutes, parts.seconds);
   statusEl.textContent = "Final hour to the crossover";
+}
+
+// Close Celebration Handler
+const closeCelebrationBtn = document.getElementById('close-celebration-btn');
+if (closeCelebrationBtn) {
+  closeCelebrationBtn.addEventListener('click', () => {
+    const overlay = document.getElementById('celebration-overlay');
+    const video = document.getElementById('celebration-video');
+    if (overlay) {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+    if (video) {
+      video.pause();
+    }
+  });
 }
 
 const startNowBtn = document.getElementById("start-now-btn");

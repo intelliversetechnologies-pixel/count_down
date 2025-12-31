@@ -14,6 +14,20 @@
 </head>
 
 <body>
+  <div class="particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
   <main class="page">
     <div class="layout">
       <aside class="sidebar">
@@ -47,7 +61,22 @@
               <button class="panel-max-btn" id="panel-max-btn" type="button">Maximize Countdown</button>
               <button class="panel-display-btn" id="panel-display-btn" type="button">Display Mode</button>
             </div>
-            <div class="timer" id="timer">00:00:00</div>
+            <div class="timer-display" id="timer">
+              <div class="time-unit">
+                <div class="time-card" id="t-hours">00</div>
+                <div class="unit-label">HOURS</div>
+              </div>
+              <div class="time-separator">:</div>
+              <div class="time-unit">
+                <div class="time-card" id="t-minutes">00</div>
+                <div class="unit-label">MINUTES</div>
+              </div>
+              <div class="time-separator">:</div>
+              <div class="time-unit">
+                <div class="time-card" id="t-seconds">00</div>
+                <div class="unit-label">SECONDS</div>
+              </div>
+            </div>
             <div class="status" id="status">Preparing the final hour</div>
           </div>
           <div class="meta">
@@ -75,6 +104,19 @@
       </aside>
     </div>
   </main>
+
+  <div class="celebration-overlay" id="celebration-overlay" aria-hidden="true">
+    <video id="celebration-video" class="celebration-video" loop playsinline muted>
+      <source src="SRC/celebration.mp4" type="video/mp4" />
+      <!-- Fallback text/image if video missing -->
+      Your browser does not support the video tag.
+    </video>
+    <div class="celebration-content">
+      <h1 class="celebration-title">New Year Activated!</h1>
+      <p class="celebration-sub">Welcome to a year of Divine Exploit</p>
+      <button class="close-celebration" id="close-celebration-btn">Return to Clock</button>
+    </div>
+  </div>
 
   <div class="settings-panel" id="settings-panel" aria-hidden="true">
     <div class="settings-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
