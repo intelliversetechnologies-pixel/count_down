@@ -370,5 +370,61 @@ function updateCountdown() {
   statusEl.textContent = "Final hour to the crossover";
 }
 
+const startNowBtn = document.getElementById("start-now-btn");
+
+if (startNowBtn) {
+  startNowBtn.addEventListener("click", () => {
+    // 1. Determine "Now" and "Next Midnight" in the correct timezone
+    const now = new Date();
+    const nowParts = partsFormatter.formatToParts(now);
+    const lookup = Object.fromEntries(nowParts.map(({ type, value }) => [type, value]));
+
+    // Create date for "Tomorrow 00:00:00" based on current timezone time
+    // JS Date.UTC handles overflow (e.g. Day + 1 at end of month correctly wraps)
+    const nextMidnight = makeTimeInZone(
+      Number(lookup.year),
+      Number(lookup.month) - 1,
+      Number(lookup.day) + 1,
+      0, 0, 0,
+      TIME_ZONE
+    );
+
+    // 2. Calculate remaining milliseconds
+    const diffMs = nextMidnight.getTime() - now.getTime();
+
+    // 3. Set duration to cover the entire remaining time so countdown starts immediately
+    // Add a small buffer (e.g. 1 min) to ensure no "waiting" text flickers
+    let neededDurationMins = Math.ceil(diffMs / 60000);
+    if (neededDurationMins < 1) neededDurationMins = 1;
+
+    // 4. Update Settings
+    // Save target as the specific nextMidnight components
+    const targetParts = partsFormatter.formatToParts(nextMidnight);
+    const tLookup = Object.fromEntries(targetParts.map(({ type, value }) => [type, value]));
+
+    const newTarget = {
+      year: Number(tLookup.year),
+      monthIndex: Number(tLookup.month) - 1,
+      day: Number(tLookup.day),
+      hour: Number(tLookup.hour),
+      minute: Number(tLookup.minute),
+      second: Number(tLookup.second)
+    };
+
+    const nextSettings = {
+      ...getSettings(),
+      durationMinutes: neededDurationMins,
+      target: newTarget,
+      showMeta: true
+    };
+
+    saveSettings(nextSettings);
+
+    // Update UI
+    populateSettingsForm(nextSettings);
+    updateCountdown();
+  });
+}
+
 updateCountdown();
 setInterval(updateCountdown, 250);

@@ -226,7 +226,8 @@ button {
 
 .fullscreen-btn,
 .display-btn,
-.settings-btn {
+.settings-btn,
+.start-btn {
   padding: 0.6rem 1.25rem;
   border-radius: 99px;
   background: rgba(255, 255, 255, 0.05);
@@ -240,10 +241,22 @@ button {
 
 .fullscreen-btn:hover,
 .display-btn:hover,
-.settings-btn:hover {
+.settings-btn:hover,
+.start-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
+}
+
+.start-btn {
+  background: rgba(225, 29, 72, 0.15);
+  border-color: rgba(225, 29, 72, 0.3);
+  color: var(--rose);
+}
+
+.start-btn:hover {
+  background: rgba(225, 29, 72, 0.25);
+  border-color: rgba(225, 29, 72, 0.5);
 }
 
 /* Countdown Panel */
