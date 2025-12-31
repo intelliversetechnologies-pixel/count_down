@@ -117,28 +117,38 @@
 
     <!-- Modal for Anointing Service -->
     <div id="flyer-modal" class="modal-overlay" aria-hidden="true">
-        <div class="flyer-card">
+        <div class="flyer-card anointing-card">
             <button class="close-modal" id="close-modal-btn">&times;</button>
             <div class="flyer-content">
-                <img src="SRC/anointing_bg.png" alt="Anointing Service Background" class="flyer-bg">
+                <!-- Video Background -->
+                <video id="anointing-video-player" class="flyer-video" autoplay muted playsinline
+                    poster="SRC/anointing_bg.png">
+                    <source src="SRC/vid 1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <!-- Fallback CSS Animation Overlay in case video fails or loads slow -->
+                <div class="flyer-fallback-anim"></div>
+
                 <div class="flyer-overlay">
                     <div class="leaders">
-                        <div class="leader">
-                            <img src="SRC/adeboye 1.jpeg" alt="Pastor E.A. Adeboye">
-                            <span>Pastor E.A. Adeboye</span>
-                            <small>General Overseer</small>
+                        <div class="leader animated-leader delay-1">
+                            <img src="SRC/adeboye 1.jpeg" alt="Pastor E.A. Adeboye" class="leader-img">
+                            <span class="leader-name">Pastor E.A. Adeboye</span>
+                            <small class="leader-role">General Overseer</small>
                         </div>
-                        <div class="leader">
-                            <img src="SRC/arole 1.png" alt="Rose of Sharon Parish">
-                            <span>Rose of Sharon</span>
-                            <small>Host Parish</small>
+                        <div class="leader animated-leader delay-2">
+                            <img src="SRC/arole 1.png" alt="Rose of Sharon Parish" class="leader-img">
+                            <span class="leader-name">Rose of Sharon</span>
+                            <small class="leader-role">Host Parish</small>
                         </div>
                     </div>
-                    <div class="flyer-text">
-                        <h2>Anointing Service</h2>
-                        <p class="flyer-date">1st Day of Every Month</p>
-                        <p class="flyer-time">6:00 AM</p>
-                        <p class="flyer-venue">RCCG Rose of Sharon Parish</p>
+                    <div class="flyer-text animated-text">
+                        <h2 class="glow-text">Anointing Service</h2>
+                        <div class="flyer-details">
+                            <p class="flyer-date">1st Day of Every Month</p>
+                            <p class="flyer-time">6:00 AM</p>
+                            <p class="flyer-venue">RCCG Rose of Sharon Parish</p>
+                        </div>
                     </div>
                 </div>
             </div>

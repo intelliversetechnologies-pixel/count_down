@@ -335,11 +335,159 @@
         margin-bottom: 0.25rem;
     }
 
-    .flyer-venue {
-        margin-top: 1rem;
-        color: var(--muted);
+    /* --- Modal Video & Animations --- */
+    .flyer-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0.6;
+        /* Dim to let text pop */
+    }
+
+    /* Fallback Animation (Simulates Golden Rays) */
+    .flyer-fallback-anim {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.4) 0%, transparent 70%),
+            repeating-conic-gradient(from 0deg at 50% -10%, transparent 0deg, rgba(251, 191, 36, 0.1) 10deg, transparent 20deg);
+        z-index: 1;
+        mix-blend-mode: overlay;
+        animation: rotateRays 20s linear infinite;
+    }
+
+    @keyframes rotateRays {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .flyer-overlay {
+        z-index: 2;
+        /* Ensure content is above video/anim */
+        /* ... existing background gradient ... */
+    }
+
+    /* Leader Animations */
+    .leader {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .modal-overlay.open .leader {
+        animation: slideUpFade 0.6s ease forwards;
+    }
+
+    .modal-overlay.open .delay-1 {
+        animation-delay: 0.2s;
+    }
+
+    .modal-overlay.open .delay-2 {
+        animation-delay: 0.4s;
+    }
+
+    .leader-img {
+        width: 72px;
+        /* Slightly larger */
+        height: 72px;
+        border: 3px solid var(--sun);
+        box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+        /* Gold Glow */
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .leader:hover .leader-img {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(251, 191, 36, 0.8);
+    }
+
+    .leader-name {
         font-size: 0.85rem;
+        color: white;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .leader-role {
+        color: var(--sun);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Text Animations */
+    .flyer-text {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    .modal-overlay.open .flyer-text {
+        animation: zoomInFade 0.6s ease forwards;
+        animation-delay: 0.5s;
+    }
+
+    .glow-text {
+        font-family: "Cinzel", serif;
+        font-size: 2.2rem;
+        background: linear-gradient(135deg, #fff 0%, #fbbf24 50%, #fff 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shineText 3s linear infinite;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+
+    .flyer-details p {
+        color: #e2e8f0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .flyer-venue {
+        color: var(--muted);
+        font-size: 0.9rem !important;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        margin-top: 0.5rem;
+    }
+
+    @keyframes slideUpFade {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes zoomInFade {
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes shineText {
+        to {
+            background-position: 200% center;
+        }
     }
 }

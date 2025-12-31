@@ -9,12 +9,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCommunion = document.getElementById('btn-communion');
     const closeCommunion = document.getElementById('close-communion-btn');
 
+    // --- Anointing Service Video Playlist Logic ---
+    const anointingPlayer = document.getElementById('anointing-video-player');
+    const anointingVideos = ['SRC/vid 1.mp4', 'SRC/vid 2.mp4'];
+    let currentVideoIndex = 0;
+
+    const playNextAnointingVideo = () => {
+        if (!anointingPlayer) return;
+        currentVideoIndex = (currentVideoIndex + 1) % anointingVideos.length;
+        anointingPlayer.src = anointingVideos[currentVideoIndex];
+        anointingPlayer.play().catch(e => console.log("Playlist play error:", e));
+    };
+
+    if (anointingPlayer) {
+        anointingPlayer.addEventListener('ended', playNextAnointingVideo);
+    }
+
     // Generic Open Modal Function
     const openModal = (modal) => {
         if (!modal) return;
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+        // If opening Anointing Modal, reset/start specific logic
+        if (modal === modalAnointing && anointingPlayer) {
+            // Ensure we start from the current or first (optional: reset to 0 every time?)
+            // Let's just ensure it plays
+            if (anointingPlayer.paused) {
+                anointingPlayer.play().catch(e => console.log("Auto-play error:", e));
+            }
+        }
     };
 
     // Generic Close Modal Function
@@ -23,6 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = ''; // Restore scrolling
+
+        // Pause video if closing Anointing
+        if (modal === modalAnointing && anointingPlayer) {
+            anointingPlayer.pause();
+            // Optional: reset to beginning of current track or play from start next time
+        }
     };
 
     // Event Listeners for Anointing
