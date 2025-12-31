@@ -1,4 +1,5 @@
 :root {
+  /* Updated Theme Variables */
   color-scheme: dark;
   --ink: #f0f4f8;
   --muted: #94a3b8;
@@ -831,15 +832,25 @@ body.display-mode .panel {
   width: 100%;
 }
 
-body.fullscreen .timer,
-body.display-mode .timer {
-  font-size: clamp(10rem, 25vw, 30rem);
-  text-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
+/* Fullscreen / Display Mode Timer Adjustment */
+body.fullscreen .timer-display,
+body.display-mode .timer-display {
+  transform: scale(3);
+  /* Significantly larger */
+  gap: 2rem;
+  margin-bottom: 0;
 }
 
-body.display-mode .timer {
-  font-size: clamp(8rem, 20vw, 25rem);
-  /* Slightly smaller than fullscreen max */
+body.display-mode .timer-display {
+  transform: scale(2.5);
+}
+
+/* Ensure unit labels stay readable or hide them if preferred */
+body.fullscreen .unit-label,
+body.display-mode .unit-label {
+  font-size: 0.5rem;
+  /* Make labels smaller relative to scale or keep them */
+  opacity: 0.5;
 }
 
 body.fullscreen .panel-actions,
